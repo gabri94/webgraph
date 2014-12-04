@@ -1,21 +1,30 @@
 from django.shortcuts import render
-
 import netdiff.olsr1.Olsr1Parser
+
 # Create your views here.
 
 
-def viewgraph(request):
-    # Show the graph
+def home(request):
+
     return
 
 
-def update(request):
+def graph(request, island):
+    # Show the graph of a given island
+    return
+
+
+def graphjs(request, island):
+    
+
+
+def update(request, island):
     # Fetch the data using netdiff and update the db
     # Fetch old_topolog from DB
     # old_top=Link.getall
-    firenze = "http://10.150.25.1:9090/"
-    response = urllib.urlopen(firenze).read()
+    url = Island.objects.get(slug=island)
+    response = urllib.urlopen(url).read()
     topology = json.loads(response)
-    parser = Olsr1Parser(old=Null, new=topology)
+    parser = Olsr1Parser(new=topology)
     diff = parser.diff(Cost=True)
     Link.add(diff[added])
