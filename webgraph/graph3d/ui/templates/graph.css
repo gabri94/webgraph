@@ -1,0 +1,15 @@
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+#graph-box {
+  background-color: yellow;
+  border: 2px solid black;
+  text-align: center;
+}
