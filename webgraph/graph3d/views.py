@@ -11,11 +11,11 @@ def home(request):
 
 def graph(request, island):
     # Show the graph of a given island
-    return
+    return render(request, 'ui/templates/graph.html')
 
 
 def graphjs(request, island):
-    
+    return
 
 
 def update(request, island):

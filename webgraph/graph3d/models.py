@@ -34,3 +34,4 @@ class Island(models.Model):
         # auto generate slug
         if not self.slug:
             self.slug = slugify(self.name)
+        super(Node, self).save(*args, **kwargs)
