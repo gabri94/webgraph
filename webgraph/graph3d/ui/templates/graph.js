@@ -1,6 +1,3 @@
-var url = window.location.pathname.split( '/' );
-url = url[url.lenght - 1];
-
 var width = 1200,
     height = 600;
 
@@ -15,7 +12,7 @@ var svg = d3.select("#graph-box").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("api/graph/" + url, function(error, graph) {
+d3.json(island, function(error, graph) {
   force
       .nodes(graph.nodes)
       .links(graph.links)
