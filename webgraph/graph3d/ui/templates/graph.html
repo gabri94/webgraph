@@ -34,7 +34,7 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("firenze_ec.json", function(error, graph) {
+d3.json("/api/graph/firenze", function(error, graph) {
   force
       .nodes(graph.nodes)
       .links(graph.links)
