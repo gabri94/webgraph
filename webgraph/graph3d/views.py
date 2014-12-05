@@ -33,11 +33,8 @@ def update(request, slug):
     island = Island.objects.get(slug=slug)
     response = urllib.urlopen(island.url).read()
     topology = json.loads(response)
-    parser = Olsr1Parser(oldint=to_interop_list(island), new=topology)
+    parser = Olsr1Parser(oldint=to_interop_list(island=slug), new=topology)
     diff = parser.diff(cost=0)
-    print len(parser.old_graph.edges())
-    print len(parser.new_graph.edges())
-    print diff
     for link in diff['added']:
         node_a, created = Node.objects.get_or_create(address=link[0], island=island)
         node_b, created = Node.objects.get_or_create(address=link[1], island=island)
@@ -50,6 +47,6 @@ def update(request, slug):
 
 def to_interop_list(island):
     interop = []
-    for link in Link.objects.all():
+    for link in Link.objects.filter(node_a__island__slug=island):
         interop.append(link.to_interop(island=island))
     return {'routes': interop}

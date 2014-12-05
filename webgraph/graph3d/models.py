@@ -11,7 +11,7 @@ ROUTING_PROTOCOL = {
 
 class Island(models.Model):
     name = models.CharField(max_length=128)
-    slug = models.SlugField(max_length=75, db_index=True, unique=True)
+    slug = models.SlugField(max_length=75, db_index=True, unique=True, blank=True)
     # proto = choicify(ROUTING_PROTOCOL)
     url = models.CharField(max_length=128)
 
