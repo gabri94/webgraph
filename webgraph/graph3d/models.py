@@ -6,7 +6,8 @@ ROUTING_PROTOCOL = {
     'Batman': 1,
     'OLSRv1': 2,
     'BMX6': 3,
-    'NetJson': 4
+    'NetJson': 4,
+    'CNML': 5
 }
 
 

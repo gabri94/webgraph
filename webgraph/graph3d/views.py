@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from netdiff import OlsrParser, NetJsonParser, diff, BMX6Parser, BatmanParser
+from netdiff import OlsrParser, NetJsonParser, diff, Bmx6Parser, BatmanParser, CnmlParser
 import urllib
 import json
 from webgraph.graph3d.models import Island, Link, Node
@@ -40,9 +40,11 @@ def update(request, slug):
     elif protocol == 'Batman':
         parser = BatmanParser(island.url)
     elif protocol == 'BMX6':
-        parser = BMX6Parser(island.url)
+        parser = Bmx6Parser(island.url)
     elif protocol == 'NetJson':
-        parser = BMX6Parser(island.url)
+        parser = NetJsonParser(island.url)
+    elif protocol == 'CNML':
+        parser = CnmlParser(island.url)
 
     njparser = NetJsonParser(to_netjson(island=island))
 
@@ -58,8 +60,8 @@ def update(request, slug):
         try:
             l = Link.objects.get(node_a__address=link[0], node_b__address=link[1])
             l.delete()
-        except DoesNotExist:
-            Pass
+        except Link.DoesNotExist:
+            pass
 
     return HttpResponse("Done")
 
